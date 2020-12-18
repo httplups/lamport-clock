@@ -21,6 +21,12 @@ def send_message(pipe, pid, counter):
     print('Message sent from ' + str(pid) + local_time(counter))
     return counter
 
+def recv_message(pipe, pid, counter):
+    message, timestamp = pipe.recv()
+    counter = calc_recv_timestamp(timestamp, counter)
+    print('Message received at ' + str(pid)  + local_time(counter))
+    return counter
+
 def process_one(pipe12):
     pid = getpid()
     counter = 0
