@@ -2,7 +2,7 @@
 
 import socket
 
-HOST = '143.106.16.163'  
+HOST = '143.106.219.143'  
 PORT = 65432        # The port used by the server
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
