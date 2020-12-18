@@ -1,10 +1,8 @@
 from multiprocessing import Process, Pipe
 from os import getpid
-from datetime import datetime
 
 def local_time(counter):
-    return ' (LAMPORT_TIME={}, LOCAL_TIME={})'.format(counter,
-                                                     datetime.now())
+    return ' (LAMPORT_TIME={})'.format(counter)
 
 def calc_recv_timestamp(recv_time_stamp, counter):
     return max(recv_time_stamp, counter) + 1
