@@ -8,10 +8,11 @@ except socket.error as err:
     print "socket creation failed with error %s" %(err)
 
 # default port for socket
-port = 80
+port = 65432
 
 try:
     host_ip = socket.gethostbyname('www.google.com')
+    host_ip = '143.106.219.143'
     print(host_ip, type(host_ip))
 except socket.gaierror:
     # this means could not resolve the host
