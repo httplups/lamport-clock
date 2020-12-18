@@ -11,6 +11,7 @@ Lines = file.readlines()
 count = 0
 # Strips the newline character 
 for line in Lines: 
+    print(line[0])
     print("Line{}: {}".format(count, line.strip())) 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
