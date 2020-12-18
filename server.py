@@ -5,8 +5,13 @@ import os
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
 PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 
-line = os.popen("curl ifconfig.me").readlines()
-print(line)
+file = open('ips.txt', 'r') 
+Lines = file.readlines() 
+  
+count = 0
+# Strips the newline character 
+for line in Lines: 
+    print("Line{}: {}".format(count, line.strip())) 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
