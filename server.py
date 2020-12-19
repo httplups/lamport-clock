@@ -18,7 +18,7 @@ def calc_recv_timestamp(recv_time_stamp):
 
 def send_message(client_ip, sock):
     time.sleep(10)
-    
+
     global counter
     counter += 1
     data = json.dumps({"message":"Oi", "timestamp":counter})
@@ -45,9 +45,6 @@ def recv_message(client_ip, sock, stop_loop):
 def handle_client(conn, client_ip):
     stop_loop = False
     with conn:
-        global counter
-        counter += 1
-        print('Connected by {} at {}'.format(client_ip,local_time()))
         while not stop_loop:
             stop_loop = recv_message(client_ip, conn, stop_loop)
             if stop_loop:
@@ -66,6 +63,9 @@ def main():
         print('Waiting for clients...')
         while True:
             conn, addr = s.accept()
+            # global counter
+            # counter += 1
+            # print('Connected by {} at {}'.format(addr,local_time()))
             thread.start_new_thread(handle_client,(conn,addr))
         s.close()
 
