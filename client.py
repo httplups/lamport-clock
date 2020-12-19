@@ -23,8 +23,8 @@ def recv_message(port, counter):
 
 if __name__ == '__main__': 
 
-    HOST = '143.106.219.143'  
-    PORT = 65432        # The port used by the server
+    HOST = '52.90.198.186'
+    PORT = 8888        # The port used by the server
 
 
     external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, PORT))
-        event(port, counter)
+        #event(port, counter)
         s.sendall(b'Hello, world')
         data = s.recv(1024)
 
