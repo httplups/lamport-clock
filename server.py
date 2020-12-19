@@ -28,7 +28,7 @@ def recv_message(client_ip, counter, sock, stop_loop):
         counter = calc_recv_timestamp(timestamp, counter)
         print('Message received from {} at {}'.format(client_ip,local_time(counter)))
     except ValueError:
-        print('Decode error:', ValueError) # provavelmente quando acabar as mssgs
+        # acabou os bytes
         stop_loop = True
     return [counter, stop_loop]
 
@@ -40,7 +40,6 @@ def handle_client(conn, client_ip):
         while not stop_loop:
             counter, stop_loop = recv_message(client_ip, counter, conn, stop_loop)
             if stop_loop:
-                print('Sem bytes')
                 break
             time.sleep(10)
             counter = send_message(client_ip, counter, conn)
