@@ -31,7 +31,7 @@ def recv_message(client_ip, sock, stop_loop):
         data = json.loads(data.decode())
         # message = data.get("message")
         timestamp = data.get("timestamp")
-        print('timestamp:', timestamp)
+
 
         global counter
         counter = calc_recv_timestamp(timestamp)
