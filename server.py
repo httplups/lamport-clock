@@ -44,7 +44,9 @@ def recv_message(client_ip, sock, stop_loop):
 def handle_client(conn, client_ip):
     stop_loop = False
     with conn:
-        print('Connected by', client_ip)
+        global counter
+        counter += 1
+        print('Connected by {} at {}'.format(client_ip,local_time()))
         while not stop_loop:
             stop_loop = recv_message(client_ip, conn, stop_loop)
             if stop_loop:
