@@ -10,24 +10,24 @@ def local_time(counter):
 def calc_recv_timestamp(recv_time_stamp, counter):
     return max(recv_time_stamp, counter) + 1
 
-def event(name, counter):
+def event(ip, counter):
     counter += 1
     # print('Something happened in {} !'.\
     #       format(pid) + local_time(counter))
-    print('Something happened in {} '.format(name), local_time(counter))
+    print('Something happened in {} '.format(ip), local_time(counter))
     return counter
 
-def send_message(name, counter, sock):
+def send_message(ip, counter, sock):
     counter += 1
-    data = 'Hello from {name}'.format(name)
+    data = 'Hello from {}'.format(ip)
     s.send((data,counter))
-    print('Message sent from {}'.format(name),local_time(counter))
+    print('Message sent from {}'.format(ip),local_time(counter))
     return counter
 
-def recv_message(name, counter, sock):
+def recv_message(ip, counter, sock):
     message, timestamp = sock.recv(1024)
     counter = calc_recv_timestamp(timestamp, counter)
-    print('Message received at {}'.format(name),local_time(counter))
+    print('Message received at {}'.format(ip),local_time(counter))
     return counter
 
 if __name__ == '__main__': 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, PORT))
 
-        counter = event(name=external_ip, counter)
-        counter = send_message(name=external_ip, counter, s)
-        counter = event(name=external_ip, counter)
-        counter = recv_message(name=external_ip, counter, s)
+        counter = event(external_ip, counter)
+        counter = send_message(external_ip, counter, s)
+        counter = event(external_ip, counter)
+        counter = recv_message(external_ip, counter, s)
