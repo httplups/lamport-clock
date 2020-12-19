@@ -1,2 +1,0 @@
-143.106.219.143 guitarra - server
-143.106.16.163 ic - client

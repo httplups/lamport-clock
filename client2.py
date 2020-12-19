@@ -4,9 +4,11 @@ import socket
 import urllib.request
 import json
 
+# print the lamport time
 def local_time(counter):
     return ' (LAMPORT_TIME={})'.format(counter)
 
+# update lamport time getting the max
 def calc_recv_timestamp(recv_time_stamp, counter):
     return max(recv_time_stamp, counter) + 1
 
@@ -23,7 +25,7 @@ def connect(counter, sock, HOST, PORT):
 
 def send_message(server_ip, counter, sock):
     counter += 1
-    message = 'Hello'
+    message = 'Hello' # not used
     data = json.dumps({"message":message, "timestamp":counter})
     s.send(data.encode())
     print('Message sent to {} at {}'.format(server_ip, local_time(counter)))
