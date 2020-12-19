@@ -21,6 +21,7 @@ def send_message(client_ip, sock):
     counter += 1
     data = json.dumps({"message":"Oi", "timestamp":counter})
     sock.send(data.encode())
+    time.sleep(10)
     print('Message sent to {} at {}'.format(client_ip,local_time()))
 
 def recv_message(client_ip, sock, stop_loop):
@@ -30,7 +31,6 @@ def recv_message(client_ip, sock, stop_loop):
         # message = data.get("message")
         timestamp = data.get("timestamp")
         print('timestamp:', timestamp)
-        time.sleep(10)
 
         global counter
         counter = calc_recv_timestamp(timestamp)
