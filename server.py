@@ -22,13 +22,14 @@ def send_message(client_ip, counter, sock):
 def recv_message(client_ip, counter, sock, stop_loop):
     data = sock.recv(1024)
     data = json.loads(data.decode())
-    message = data.get("message")
-    timestamp = data.get("timestamp")
-    counter = calc_recv_timestamp(timestamp, counter)
-    if not message: # Se não há bytes pra ler, para o loop
-        stop_loop = True
-    else:
+    try:
+        message = data.get("message")
+        timestamp = data.get("timestamp")
+        counter = calc_recv_timestamp(timestamp, counter)
         print('Message received from {} at {}'.format(client_ip,local_time(counter)))
+    except ValueError:
+        print('Decode error:', ValueError) # provavelmente quando acabar as mssgs
+        stop_loop = True
     return [counter, stop_loop]
 
 def handle_client(conn, client_ip):
