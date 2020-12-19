@@ -44,5 +44,8 @@ if __name__ == '__main__':
         s.connect((HOST, PORT))
         counter = event(counter)
         counter = send_message(HOST, counter, s)
+        counter = send_message(HOST, counter, s)
+        counter = event(counter)
+        counter = recv_message(HOST, counter, s)
         counter = event(counter)
         counter = recv_message(HOST, counter, s)
