@@ -17,11 +17,12 @@ def calc_recv_timestamp(recv_time_stamp):
     return max(recv_time_stamp, counter) + 1
 
 def send_message(client_ip, sock):
+    time.sleep(10)
+    
     global counter
     counter += 1
     data = json.dumps({"message":"Oi", "timestamp":counter})
     sock.send(data.encode())
-    time.sleep(10)
     print('Message sent to {} at {}'.format(client_ip,local_time()))
 
 def recv_message(client_ip, sock, stop_loop):
