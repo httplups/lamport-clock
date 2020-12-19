@@ -47,7 +47,7 @@ def handle_client(conn, client_ip):
             stop_loop = recv_message(client_ip, conn, stop_loop)
             if stop_loop:
                 break
-            time.sleep(3)
+            time.sleep(10)
             send_message(client_ip, conn)
         conn.close()
     
