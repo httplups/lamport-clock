@@ -42,7 +42,7 @@ if __name__ == '__main__':
     
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, PORT))
-        counter = event(counter)
         counter = send_message(HOST, counter, s)
+        counter = event(counter)
         counter = event(counter)
         counter = recv_message(HOST, counter, s)

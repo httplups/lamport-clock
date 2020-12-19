@@ -49,8 +49,7 @@ def handle_client(conn, client_ip):
             send_message(client_ip, conn)
         conn.close()
     
-if __name__ == '__main__': 
-
+def main():
     HOST = '0.0.0.0'  # Standard loopback interface address (localhost)
     PORT = 8888        # Port to listen on (non-privileged ports are > 1023)
 
@@ -63,3 +62,13 @@ if __name__ == '__main__':
             conn, addr = s.accept()
             thread.start_new_thread(handle_client,(conn,addr))
         s.close()
+
+if __name__ == '__main__': 
+
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Bye bye...')
+        sys.exit(0)
+
+    
