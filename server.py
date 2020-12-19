@@ -30,6 +30,8 @@ def recv_message(client_ip, sock, stop_loop):
         # message = data.get("message")
         timestamp = data.get("timestamp")
         print('timestamp:', timestamp)
+        time.sleep(10)
+
         global counter
         counter = calc_recv_timestamp(timestamp)
         print('Message received from {} at {}'.format(client_ip,local_time()))
@@ -48,7 +50,6 @@ def handle_client(conn, client_ip):
             if stop_loop:
                 break
             send_message(client_ip, conn)
-            time.sleep(10)
         conn.close()
     
 def main():
