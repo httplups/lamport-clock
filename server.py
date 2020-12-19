@@ -20,9 +20,9 @@ def send_message(client_ip, counter, sock):
     return counter
 
 def recv_message(client_ip, counter, sock, stop_loop):
-    data = sock.recv(1024)
-    data = json.loads(data.decode())
     try:
+        data = sock.recv(1024)
+        data = json.loads(data.decode())
         message = data.get("message")
         timestamp = data.get("timestamp")
         counter = calc_recv_timestamp(timestamp, counter)
