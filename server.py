@@ -34,8 +34,8 @@ if __name__ == '__main__':
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((HOST, PORT))
         s.listen()
-        print 'Server started!'
-        print 'Waiting for clients...'
+        print('Server started!')
+        print('Waiting for clients...')
         while True:
             conn, addr = s.accept()
             thread.start_new_thread(handle_client,(conn,addr))
