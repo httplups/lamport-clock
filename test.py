@@ -1,5 +1,6 @@
 from multiprocessing import Process, Pipe
 from os import getpid
+from datetime import datetime
 
 def local_time(counter):
     return ' (LAMPORT_TIME={})'.format(counter)

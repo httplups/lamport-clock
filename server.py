@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import socket
 import os
-import _thread
+import _thread as thread
 import time
+import json
+stop_loop = False
 
 def local_time(counter):
     return ' (LAMPORT_TIME={})'.format(counter)
@@ -10,17 +12,37 @@ def local_time(counter):
 def calc_recv_timestamp(recv_time_stamp, counter):
     return max(recv_time_stamp, counter) + 1
 
-def handle_client(conn, addr):
+def send_message(client_ip, counter, sock):
+    counter += 1
+    data = json.dumps({"message":"Oi", "timestamp":counter})
+    sock.send(data.encode())
+    print('Message sent to {} at {}'.format(client_ip,local_time(counter)))
+    return counter
+
+def recv_message(client_ip, counter, sock, stop_loop):
+    data = sock.recv(1024)
+    data = json.loads(data.decode())
+    message = data.get("message")
+    timestamp = data.get("timestamp")
+    counter = calc_recv_timestamp(timestamp, counter)
+    if not message: # Se não há bytes pra ler, para o loop
+        stop_loop = True
+    else:
+        print('Message received from {} at {}'.format(client_ip,local_time(counter)))
+    return [counter, stop_loop]
+
+def handle_client(conn, client_ip):
     counter = 0
+    stop_loop = False
     with conn:
-        print('Connected by', addr)
-        while True:
-            message, timestamp = conn.recv(1024)
-            if not message:
+        print('Connected by', client_ip)
+        while not stop_loop:
+            counter, stop_loop = recv_message(client_ip, counter, conn, stop_loop)
+            if stop_loop:
+                print('Sem bytes')
                 break
             time.sleep(10)
-            counter += 1
-            conn.send((message, counter))
+            counter = send_message(client_ip, counter, conn)
         conn.close()
     
 if __name__ == '__main__': 
