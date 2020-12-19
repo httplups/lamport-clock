@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import socket
 import os
-import thread
+import _thread
 import time
 
 def local_time(counter):
