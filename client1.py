@@ -15,6 +15,12 @@ def event(counter):
     print('Something happened here... at {}'.format(local_time(counter)))
     return counter
 
+def connect(counter, sock, HOST, PORT):
+    s.connect((HOST, PORT))
+    counter += 1
+    print('Connection Request at {}'.format(local_time(counter)))
+    return counter
+
 def send_message(server_ip, counter, sock):
     counter += 1
     message = 'Hello'
@@ -41,9 +47,8 @@ if __name__ == '__main__':
     print('This IP address is: ', external_ip)
     
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((HOST, PORT))
-
         counter = event(counter)
+        counter = connect(counter, s, HOST, PORT)
         counter = send_message(HOST, counter, s)
         counter = recv_message(HOST, counter, s)
         counter = send_message(HOST, counter, s)
