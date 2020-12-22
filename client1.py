@@ -41,7 +41,7 @@ def recv_message(server_ip, counter, sock):
 
 if __name__ == '__main__': 
 
-    HOST = sys.argv[1]
+    HOST =  '172.31.81.98'
     PORT = 8888        # The port used by the server
     counter = 0
 
