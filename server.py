@@ -54,7 +54,7 @@ def handle_client(conn, client_ip):
     
 def main():
     HOST = '0.0.0.0'  # Standard loopback interface address (localhost)
-    PORT = sys.argv[1]        # Port to listen on (non-privileged ports are > 1023)
+    PORT = int(sys.argv[1])        # Port to listen on (non-privileged ports are > 1023)
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((HOST, PORT))

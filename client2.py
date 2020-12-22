@@ -42,7 +42,7 @@ def recv_message(server_ip, counter, sock):
 
 if __name__ == '__main__': 
     HOST = sys.argv[1]
-    PORT = sys.argv[2]        # The port used by the server
+    PORT = int(sys.argv[2])       # The port used by the server
     counter = 0
     external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
     print('This IP address is: ', external_ip)
