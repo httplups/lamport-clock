@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import sys
 import socket
 import urllib.request
 import json
@@ -41,8 +40,7 @@ def recv_message(server_ip, counter, sock):
     return counter
 
 if __name__ == '__main__': 
-
-    HOST = sys.argv[1]
+    HOST = '172.31.89.111'
     PORT = 8888        # The port used by the server
     counter = 0
     external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
