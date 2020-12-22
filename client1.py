@@ -17,6 +17,7 @@ def event(counter):
     return counter
 
 def connect(counter, sock, HOST, PORT):
+    print(HOST, PORT)
     sock.connect((HOST, PORT))
     counter += 1
     print('Connection Request at {}'.format(local_time(counter)))
