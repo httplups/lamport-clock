@@ -26,7 +26,7 @@ Depois desses processos, obtive a seguinte saída:
 
 Servidor:
 ```bash
-  Server started!
+   Server started!
    Waiting for clients...
    Message received from ('52.23.209.141', 39320) at  (LAMPORT_TIME=4)
    Message received from ('52.201.232.21', 49628) at  (LAMPORT_TIME=5)
