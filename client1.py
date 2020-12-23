@@ -17,7 +17,6 @@ def event(counter):
     return counter
 
 def connect(counter, sock, HOST, PORT):
-    print(HOST, PORT)
     sock.connect((HOST, PORT))
     counter += 1
     print('Connection Request at {}'.format(local_time(counter)))
@@ -45,8 +44,6 @@ if __name__ == '__main__':
     HOST =  sys.argv[1]
     PORT = int(sys.argv[2])        # The port used by the server
     counter = 0
-
-    print(HOST)
     external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
     print('This IP address is: ', external_ip)
     
